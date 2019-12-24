@@ -32,7 +32,10 @@ def drawCaption(convas, captions, ixtoword, vis_size, off1=2, off2=2):
     img_txt = Image.fromarray(convas)
     # get a font
     # fnt = None  # ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 50)
-    fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 50)
+    fonts_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'fonts')
+    font_file_path = os.path.join(fonts_dir, 'FreeMono.ttf')
+    assert os.path.isfile(font_file_path), f'could not find font file: {font_file_path}'
+    fnt = ImageFont.truetype(font_file_path, 50)
     # get a drawing context
     d = ImageDraw.Draw(img_txt)
     sentence_list = []
