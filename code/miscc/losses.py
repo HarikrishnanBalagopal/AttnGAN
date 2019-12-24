@@ -17,8 +17,7 @@ def cosine_similarity(x1, x2, dim=1, eps=1e-8):
     return (w12 / (w1 * w2).clamp(min=eps)).squeeze()
 
 
-def sent_loss(cnn_code, rnn_code, labels, class_ids,
-              batch_size, eps=1e-8):
+def sent_loss(cnn_code, rnn_code, labels, class_ids, batch_size, eps=1e-8):
     # ### Mask mis-match samples  ###
     # that come from the same class as the real sample ###
     masks = []
@@ -59,8 +58,7 @@ def sent_loss(cnn_code, rnn_code, labels, class_ids,
     return loss0, loss1
 
 
-def words_loss(img_features, words_emb, labels,
-               cap_lens, class_ids, batch_size):
+def words_loss(img_features, words_emb, labels, cap_lens, class_ids, batch_size):
     """
         words_emb(query): batch x nef x seq_len
         img_features(context): batch x nef x 17 x 17

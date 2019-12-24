@@ -86,7 +86,7 @@ def train(dataloader, cnn_model, rnn_model, batch_size, labels, optimizer, epoch
         #
         loss.backward()
         #
-        # `clip_grad_norm` helps prevent
+        # `clip_grad_norm_` helps prevent
         # the exploding gradient problem in RNNs / LSTMs.
         torch.nn.utils.clip_grad_norm_(rnn_model.parameters(), cfg.TRAIN.RNN_GRAD_CLIP)
         optimizer.step()
@@ -123,8 +123,7 @@ def evaluate(dataloader, cnn_model, rnn_model, batch_size):
     s_total_loss = 0
     w_total_loss = 0
     for step, data in enumerate(dataloader, 0):
-        real_imgs, captions, cap_lens, \
-                class_ids, keys = prepare_data(data)
+        real_imgs, captions, cap_lens, class_ids, keys = prepare_data(data)
 
         words_features, sent_code = cnn_model(real_imgs[-1])
         # nef = words_features.size(1)
@@ -137,8 +136,7 @@ def evaluate(dataloader, cnn_model, rnn_model, batch_size):
                                             cap_lens, class_ids, batch_size)
         w_total_loss += (w_loss0 + w_loss1).data
 
-        s_loss0, s_loss1 = \
-            sent_loss(sent_code, sent_emb, labels, class_ids, batch_size)
+        s_loss0, s_loss1 = sent_loss(sent_code, sent_emb, labels, class_ids, batch_size)
         s_total_loss += (s_loss0 + s_loss1).data
 
         if step == 50:
