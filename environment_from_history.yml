@@ -1,0 +1,20 @@
+name: attn-gan
+channels:
+  - defaults
+dependencies:
+  - python=3.6
+  - cudatoolkit=10.0
+  - pytorch
+  - torchvision
+  - python-dateutil
+  - pandas
+  - torchfile
+  - nltk
+  - scikit-image
+  - pyyaml
+  - tqdm
+  - tensorflow-gpu
+  - jupyterlab
+  - ptvsd
+prefix: /users/gpu/haribala/anaconda3/envs/attn-gan
+
